@@ -8,37 +8,22 @@ const app = express();
 
 app.use(express.json());
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://kriyaurawellness.in",
-];
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    origin: "https://api.kriyaurawellness.in",
     credentials: true,
   })
 );
 
-// 👇 ensure Express properly replies to preflight OPTIONS
-app.options("*", cors());
-
 app.use("/api/v1/order", orderRouter);
 
-app.listen(process.env.PORT, async () => {
+app.listen(process.env.PORT, async() => {
   try {
     await connectDB();
     console.log(
-      `✅ Server running on http://localhost:${process.env.PORT}`
+      `Server running on https://api.kriyaurawellness.in:${process.env.PORT} successfully !!!`
     );
   } catch (error) {
-    console.log(`❌ Server Connection Error`, error.message);
+    console.log(`Server Connection Error`, error.message);
   }
 });
