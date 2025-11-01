@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "https://api.kriyaurawellness.in",
+    origin: "https://kriyaurawellness.in",
     credentials: true,
   })
 );
@@ -21,9 +21,10 @@ app.listen(process.env.PORT, async() => {
   try {
     await connectDB();
     console.log(
-      `Server running on https://api.kriyaurawellness.in:${process.env.PORT} successfully !!!`
+      `Server running on https://kriyaurawellness.in:${process.env.PORT} successfully !!!`
     );
   } catch (error) {
     console.log(`Server Connection Error`, error.message);
   }
 });
+
