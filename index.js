@@ -9,8 +9,10 @@ const app = express();
 app.use(express.json());
 
 app.use(
-  cors({
-    origin: "http://localhost:5173",
+  origin: [
+      "http://localhost:5173",       // local dev
+      "https://kriyaurawellness.in"  // production site
+    ],
     credentials: true,
   })
 );
@@ -21,9 +23,10 @@ app.listen(process.env.PORT, async() => {
   try {
     await connectDB();
     console.log(
-      `Server running on http://localhost:${process.env.PORT} successfully !!!`
+      `Server running on https://kriyaurawellness.in:${process.env.PORT} successfully !!!`
     );
   } catch (error) {
     console.log(`Server Connection Error`, error.message);
   }
+
 });
